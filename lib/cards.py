@@ -35,8 +35,12 @@ class BankableCard(object):
     Mixin class that indicates that a card can be played in the bank
     Inherit from this first before Card, to override the default value for BANKABLE
     """
-    _bankable = True
-
+    _bankable: bool = True
+    _value: int = 0
+    def __add__(self, other_bankablecard: "BankableCard") -> int:
+        if not isinstance(other_bankablecard, BankableCard):
+            raise TypeError(f"Cannot add {type(self)} and {type(other_bankablecard)}")
+        return self.value() + other_bankablecard.value()
 
 class NumberCard(BankableCard, Card):
     """Type class for number cards"""
