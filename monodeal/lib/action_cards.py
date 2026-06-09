@@ -1,30 +1,33 @@
-from lib.cards import ActionCard
+from lib.cards import BankableActionCard, NonBankableActionCard
 
-class PassGoCard(ActionCard):
+class PassGoCard(BankableActionCard):
     """
     Collect two cards from the deck
     """
+    _value: int = 2
 
-class RentCard(ActionCard):
+class RentCard(BankableActionCard):
     """Charge rent"""
+    _value: int = 2
 
 
-class DoubleRentCard(ActionCard):
+class DoubleRentCard(NonBankableActionCard):
     """
     Play with RentCard
     Double the rent amount
     """
 
-class JustSayNoCard(ActionCard):
+class JustSayNoCard(NonBankableActionCard):
     """
     Prevent an opponent's action against you
     """
 
 
-class BirthdayCard(ActionCard):
+class BirthdayCard(BankableActionCard):
     """
     Receive a birthday card. And money. You get money
     """
+    _value: int = 2
 
 
 # class Card(ActionCard):

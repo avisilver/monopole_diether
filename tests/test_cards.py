@@ -1,4 +1,4 @@
-from lib.cards import Card, NumberCard, ActionCard, BankableCard, PropertyCard
+from monodeal.lib.cards import Card, NumberCard, BankableActionCard, NonBankableActionCard, BankableCard, PropertyCard
 
 import unittest
 
@@ -9,13 +9,18 @@ class CardTests(unittest.TestCase):
         self.assertIsNone(c.value())
     
     def test_number_card(self):
-        c = NumberCard()
+        c = NumberCard(1)
         self.assertTrue(c.bankable())
         self.assertIsNotNone(c.value())
     
-    def test_action_card(self):
-        c = ActionCard()
+    def test_bankable_action_card(self):
+        c = BankableActionCard(5)
         self.assertTrue(c.bankable())
+        self.assertEqual(c.value(), 5)
+    
+    def test_non_bankable_action_card(self):
+        c = NonBankableActionCard()
+        self.assertFalse(c.bankable())
         self.assertIsNone(c.value())
     
     def test_property_card(self):
@@ -24,9 +29,9 @@ class CardTests(unittest.TestCase):
         self.assertIsNone(c.value())
     
     def test_bankable_card(self):
-        c = BankableCard()
+        c = BankableCard(42)
         self.assertTrue(c.bankable())
-        self.assertIsNone(c.value())
+        self.assertEqual(c.value(), 42)
 
     def test_sum_number_cards(self):
         val1, val2 = 1, 2

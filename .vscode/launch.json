@@ -13,10 +13,10 @@
         },
         {
             "name": "Python: Current File",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             // "program": "${file}",
-            "program": "monopole_diether.py",
+            "program": "monodeal\\monopole_diether.py",
             "console": "integratedTerminal",
             "justMyCode": true
         }
